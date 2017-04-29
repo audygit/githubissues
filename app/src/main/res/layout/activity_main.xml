@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.uday.doctalktask.MainActivity">
+    <RelativeLayout
+        android:id="@+id/toolBar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+        <EditText
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="70dp"
+            android:paddingLeft="15dp"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:id="@+id/searchFld"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:hint="Search"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+        <ImageButton
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:textSize="12sp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/search"
+            android:id="@+id/searchBtn"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:hint="Search"
+            android:layout_centerVertical="true"
+            android:layout_width="45dp"
+            android:layout_height="45dp" />
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/issue_list"
+        android:layout_below="@id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</RelativeLayout>
