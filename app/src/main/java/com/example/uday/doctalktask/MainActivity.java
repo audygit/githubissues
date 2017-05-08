@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void search(String owner,String repo){
+    private void search(final String owner, final String repo){
         APIInterface apiService =
                 APIClient.getClient().create(APIInterface.class);
         Observable<ArrayList<IssueResponse>> london = apiService.getIssues(owner,repo);
@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onNext(ArrayList<IssueResponse> issueResponses) {
                         issueResponsesList=issueResponses;
+                        issuesRecyclerAdapter.setOwner(owner);
+                        issuesRecyclerAdapter.setRepo(repo);
                         issuesRecyclerAdapter.setIssueResponses(issueResponses);
                         issuesRecyclerAdapter.notifyDataSetChanged();
 

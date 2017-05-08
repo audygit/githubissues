@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.uday.doctalktask.CommentsActivity">
+    <RelativeLayout
+        android:id="@+id/toolBar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:elevation="8dp"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/noComments"
+        android:text="No Comments"
+        android:elevation="8dp"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:paddingBottom="60dp"
+        android:id="@+id/comments_list"
+        android:layout_below="@id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <EditText
+        android:hint="Add Comment"
+        android:id="@+id/addComment"
+        android:paddingRight="60dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:background="@drawable/edit_background"
+        android:minHeight="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageButton
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:id="@+id/send"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:padding="5dp"
+        android:src="@drawable/send"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+    </RelativeLayout>
+</RelativeLayout>

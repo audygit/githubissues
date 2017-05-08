@@ -2,11 +2,13 @@ package com.example.uday.doctalktask;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by uday on 2017-04-29.
  */
 
-public class IssueResponse {
+public class IssueResponse implements Serializable{
     @SerializedName("id")
     private int id;
     @SerializedName("number")

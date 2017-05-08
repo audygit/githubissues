@@ -1,11 +1,13 @@
 package com.example.uday.doctalktask;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,21 +22,9 @@ public class IssuesRecyclerAdapter  extends RecyclerView.Adapter<IssuesRecyclerA
 
     private ArrayList<IssueResponse> issueResponses=new ArrayList<>();
     private Context context;
+    private String owner;
+    private String repo;
 
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        TextView subTitle;
-        ImageView avatar;
-
-
-        public ViewHolder(View v) {
-            super(v);
-            title = (TextView) v.findViewById(R.id.issue_title);
-            subTitle = (TextView) v.findViewById(R.id.subtitle);
-            avatar= (ImageView) v.findViewById(R.id.avatar);
-        }
-    }
 
     public IssuesRecyclerAdapter(ArrayList<IssueResponse> issueResponses,  Context context) {
         this.issueResponses = issueResponses;
@@ -55,12 +45,10 @@ public class IssuesRecyclerAdapter  extends RecyclerView.Adapter<IssuesRecyclerA
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        IssueResponse issueResponse=issueResponses.get(position);
+        final IssueResponse issueResponse=issueResponses.get(position);
         holder.title.setText(issueResponse.getTitle());
         holder.subTitle.setText("#"+issueResponse.getNumber()+" created by "+issueResponse.getUser().getLogin());
         Glide.with(context).load(issueResponse.getUser().getAvatarUrl()).into(holder.avatar);
-//        holder.movieDescription.setText(movies.get(position).getOverview());
-//        holder.rating.setText(movies.get(position).getVoteAverage().toString());
     }
 
     @Override
@@ -71,4 +59,47 @@ public class IssuesRecyclerAdapter  extends RecyclerView.Adapter<IssuesRecyclerA
             return issueResponses.size();
         }
     }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getRepo() {
+        return repo;
+    }
+
+    public void setRepo(String repo) {
+        this.repo = repo;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView title;
+        TextView subTitle;
+        ImageView avatar;
+        LinearLayout issueContainer;
+
+        public ViewHolder(View v) {
+            super(v);
+            title = (TextView) v.findViewById(R.id.issue_title);
+            subTitle = (TextView) v.findViewById(R.id.subtitle);
+            avatar= (ImageView) v.findViewById(R.id.avatar);
+            issueContainer= (LinearLayout) v.findViewById(R.id.issue_container);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    IssueResponse issueResponse=issueResponses.get(getAdapterPosition());
+                    Intent intent=new Intent(context,CommentsActivity.class);
+                    intent.putExtra("issue",issueResponse);
+                    intent.putExtra("owner",owner);
+                    intent.putExtra("repo",repo);
+                    context.startActivity(intent);
+                }
+            });
+        }
+    }
+
 }
