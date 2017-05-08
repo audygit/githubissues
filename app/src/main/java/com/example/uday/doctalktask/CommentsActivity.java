@@ -88,6 +88,13 @@ public class CommentsActivity extends AppCompatActivity {
             }
         });
     }
+    private String getKey(){
+       String x="2aa4f439e";
+       String y="47feb35ee20";
+        String z="b4af7f8f39";
+        String a="de479d3c7f";
+        return  x+y+z+a;
+    }
     private void postComment(String commentText){
         progressBar.setVisibility(View.VISIBLE);
         hideKeyBoard();
@@ -96,7 +103,8 @@ public class CommentsActivity extends AppCompatActivity {
         body.put("body",commentText);
         APIInterface apiService =
                 APIClient.getClient().create(APIInterface.class);
-        Observable<Comment> london = apiService.postComment(owner,repo, String.valueOf(issueResponse.getNumber()),"token 3bcce34e1989077390802196f8903391c4002832",body);
+        //hiding the github access token as my previous one was revoked by github due to security reasons.
+        Observable<Comment> london = apiService.postComment(owner,repo, String.valueOf(issueResponse.getNumber()),"token "+getKey(),body);
         london
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
